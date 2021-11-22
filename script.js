@@ -46,11 +46,7 @@ function dragElement(terrariumElement) {
         let movementRelativeToTop = mousePositionWhenDragY-defaultPositionY
         let movementRelativeToLeft = mousePositionWhenDragX-defaultPositionX
         const translateValues = getTranslateXY(e.target)
-        if (translateOnX==0 && translateOnY==0) {
-            terrariumElement.style.transform = `translate(${movementRelativeToLeft}px, ${movementRelativeToTop}px)`;
-        } else {
-            terrariumElement.style.transform = `translate(${movementRelativeToLeft+translateOnX}px, ${movementRelativeToTop+translateOnY}px)`;
-        }
+        terrariumElement.style.transform = `translate(${movementRelativeToLeft+translateOnX}px, ${movementRelativeToTop+translateOnY}px)`;
     }
 
     function stopElementDrag(e) {
