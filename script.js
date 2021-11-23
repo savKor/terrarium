@@ -45,17 +45,11 @@ function dragElement(terrariumElement) {
         mousePositionWhenDragY = e.pageY;
         let movementRelativeToTop = mousePositionWhenDragY-defaultPositionY
         let movementRelativeToLeft = mousePositionWhenDragX-defaultPositionX
-        const translateValues = getTranslateXY(e.target)
         terrariumElement.style.transform = `translate(${movementRelativeToLeft+translateOnX}px, ${movementRelativeToTop+translateOnY}px)`;
     }
-
-    function stopElementDrag(e) {
-        let dirt = e.target.closest('.dirt')
-        if (dirt) {
-            console.log("fdf")
-            terrariumElement.style.webkitFilter = "blur(5px)"
-        }
+    function stopElementDrag() {
         document.onpointermove = null;
+        document.onpointerup = null;
     }
 }
 
