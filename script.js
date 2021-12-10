@@ -33,7 +33,6 @@ function dragElement(terrariumElement) {
             const translateValues = getTranslateXY(e.target)
             translateOnX = translateValues.translateX
             translateOnY = translateValues.translateY
-            console.log(translateOnX)
             console.log(translateOnY)
             document.onpointermove = elementDrag;
             document.onpointerup = stopElementDrag;
@@ -41,8 +40,17 @@ function dragElement(terrariumElement) {
     }
 
     function elementDrag(e) {
+        let terrarium = document.getElementById("terrarium").getBoundingClientRect();
+        let plantPosition = terrariumElement.getBoundingClientRect();
+        console.log(terrarium.top,terrarium.bottom,terrarium.left,terrarium.right)
+        console.log(plantPosition.top, plantPosition.bottom, plantPosition.right, plantPosition.left)
         mousePositionWhenDragX = e.pageX;
         mousePositionWhenDragY = e.pageY;
+        if (plantPosition.right<=terrarium.right&&plantPosition.left>=terrarium.left&&plantPosition.bottom<=terrarium.bottom&&plantPosition.top>=terrarium.top) {
+            terrariumElement.style.filter = "grayscale(100%)"
+        } else {
+            terrariumElement.style.filter = ""
+        }
         let movementRelativeToTop = mousePositionWhenDragY-defaultPositionY
         let movementRelativeToLeft = mousePositionWhenDragX-defaultPositionX
         terrariumElement.style.transform = `translate(${movementRelativeToLeft+translateOnX}px, ${movementRelativeToTop+translateOnY}px)`;
